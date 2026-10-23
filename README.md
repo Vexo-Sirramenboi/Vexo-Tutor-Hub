@@ -1,7 +1,25 @@
 # WEBSITE IS FULLY OPERATIONAL 
 
+## Mirror links
+https://vexo-tutor-hub.vercel.app/
 
+https://vexo-tutor-hub.3001890.workers.dev/
 
+https://vexo-tutor-hub.onrender.com/
+
+https://vexo-turtor-hub.netlify.app/
+
+https://vexo-tutor-hub.vexo-sirramenboi.deno.net/
+
+https://vexo-tutor-hub.wasmer.app/
+
+https://soarerquick-azrngb.stormkit.dev/
+
+https://vexo-tutor-hub.neocities.org/
+
+https://vexo-tutor-hub.freehosting.dev
+
+https://vexo-tutor-hub.surge.sh/
 
 
 
