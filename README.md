@@ -7,7 +7,7 @@ https://vexo-tutor-hub.3001890.workers.dev/
 
 https://vexo-tutor-hub.onrender.com/
 
-https://vexo-turtor-hub.netlify.app/
+https://vexo-turtor-hub.netlify.app/ (currently down)
 
 https://vexo-tutor-hub.vexo-sirramenboi.deno.net/
 
@@ -15,7 +15,7 @@ https://vexo-tutor-hub.wasmer.app/
 
 https://soarerquick-azrngb.stormkit.dev/
 
-https://vexo-tutor-hub.neocities.org/
+https://vexo-tutor-hub.neocities.org/ (currently down)
 
 https://vexo-tutor-hub.freehosting.dev
 
