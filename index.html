@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VEXO — Community</title>
+<title>𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫</title>
 
 <link
   id="site-favicon"
@@ -1191,8 +1191,8 @@ function showPage(name){
     tools:["Toolbox","Handy client-side utilities for everyday tasks."],
     ai:["VEXO AI","Chat with VEXO AI."],
     proxy:["Web Proxy","Browse through the VEXO network."],
-    admin:["Admin Center","Moderate submissions and manage the VEXO community."],
-    fileshare:["File Sharing","Share files with the VEXO community."]
+    admin:["Admin Center","Moderate submissions and manage the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫."],
+    fileshare:["File Sharing","Share files with the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫."]
   };
   $("pageTitle").textContent = titles[name][0];
   $("pageSub").textContent = titles[name][1];
@@ -1213,7 +1213,7 @@ $("loginBtn").onclick = openAuth;
 $("switchAuth").onclick = () => {
   authMode = authMode === "login" ? "signup" : "login";
   $("authTitle").textContent = authMode === "login" ? "Sign in" : "Create account";
-  $("authSub").textContent = authMode === "login" ? "Enter your VEXO account." : "Create your VEXO community account.";
+  $("authSub").textContent = authMode === "login" ? "Enter your VEXO account." : "Create your 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 account.";
   $("authSubmit").textContent = authMode === "login" ? "Sign in" : "Create account";
   $("switchAuth").textContent = authMode === "login" ? "Create an account" : "I already have an account";
   $("usernameWrap").classList.toggle("hidden", authMode === "login");
@@ -2916,7 +2916,7 @@ async function runVirusTotalChecker(){
 
 <!-- ============================================================
      VEXO CHAT FEATURES — MENTIONS / PROFILES / PRESENCE / EDIT / REPORT
-     Append-only enhancement for the existing VEXO Community Chat.
+     Append-only enhancement for the existing 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 Chat.
      ============================================================ -->
 <style>
 .vexo-chat-feature-menu{position:fixed;z-index:1000001;min-width:190px;padding:6px;background:rgba(12,17,30,.99);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.5);display:none}
@@ -4174,7 +4174,7 @@ async function runVirusTotalChecker(){
     panel.className = "panel vexo-announcements-home hidden";
     panel.innerHTML = `
       <div class="panel-head">
-        <div><h3>VEXO Announcements</h3><div class="muted-sm">Updates from the VEXO community team.</div></div>
+        <div><h3>VEXO Announcements</h3><div class="muted-sm">Updates from the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 team.</div></div>
       </div>
       <div id="vexoAnnouncementsList" class="vexo-announcement-list"></div>`;
     hero.insertAdjacentElement("afterend", panel);
@@ -4791,7 +4791,7 @@ async function runVirusTotalChecker(){
           <span class="vexo-announcement-live"></span>
           VEXO Official Announcement
         </div>
-        <div class="vexo-announcement-team">Updates from the VEXO community team</div>
+        <div class="vexo-announcement-team">Updates from the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 team</div>
       </div>
 
       <div class="vexo-announcement-featured-body">
@@ -4803,7 +4803,7 @@ async function runVirusTotalChecker(){
             <h2 class="vexo-announcement-primary-title">${e(announcements[0].title)}</h2>
             <div class="vexo-announcement-primary-text">${e(announcements[0].body)}</div>
             <div class="vexo-announcement-mobile-note">
-              This message is posted by the VEXO community team.
+              This message is posted by the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 team.
             </div>
           </div>
 
@@ -4913,7 +4913,7 @@ async function runVirusTotalChecker(){
 </script>
 
 <!-- ══════════════════════════════════════════════════════════════ -->
-<!-- VEXO COMMUNITY CHAT ADD-ON                                   -->
+<!-- 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫 CHAT ADD-ON                                   -->
 <!-- ══════════════════════════════════════════════════════════════ -->
 <style>
 .chat-container {
@@ -5347,7 +5347,7 @@ const BLOCKED_WORDS = [
     const crumbEl = document.getElementById("crumbPage");
 
     if (titleEl) titleEl.textContent = "Community Chat";
-    if (subEl) subEl.textContent = "Real-time conversation with the VEXO community.";
+    if (subEl) subEl.textContent = "Real-time conversation with the 𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫.";
     if (crumbEl) crumbEl.textContent = "Chat";
 
     loadMessages();
