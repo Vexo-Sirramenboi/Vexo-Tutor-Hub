@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VEXO — Community</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%237c5cff'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>V</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link id="site-favicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237c5cff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -397,11 +397,13 @@ body{
 </head>
 <body>
 
+
+<!-- FIRST-VISIT FULL-SCREEN IMAGE -->
 <div id="first-layer-overlay" aria-label="VEXO opening screen">
   <img src="firstlayer.png" alt="VEXO">
 </div>
 
-<!-- VEXO DEDICATED BACKGROUND — separate HTML file -->
+<!-- VEXO BACKGROUND -->
 <iframe
   id="vexoBackgroundFrame"
   src="vexo-background.html"
@@ -7891,5 +7893,37 @@ const BLOCKED_WORDS = [
     overlay.style.display = "none";
   }
 })();
+  
+<script>
+(() => {
+  const overlay = document.getElementById("first-layer-overlay");
+  const favicon = document.getElementById("site-favicon");
+
+  const openingTitle =
+    "IXL | Math, Language Arts, Science, Social Studies, and Spanish";
+
+  const mainTitle = "VEXO — Community";
+
+  const openingIcon =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230078d4'/%3E%3Ctext x='50' y='62' font-size='39' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EIXL%3C/text%3E%3C/svg%3E";
+
+  const mainIcon =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237c5cff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E";
+
+  function setTab(title, icon) {
+    document.title = title;
+    if (favicon) favicon.href = icon;
+  }
+
+  if (sessionStorage.getItem("vexoVisited")) {
+    if (overlay) overlay.style.display = "none";
+    setTab(mainTitle, mainIcon);
+  } else {
+    sessionStorage.setItem("vexoVisited", "true");
+    setTab(openingTitle, openingIcon);
+  }
+})();
+</html>
 </script>
 </body>
+
