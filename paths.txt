@@ -9,7 +9,7 @@ random/ahh
 random/ahh/stuff
 random/ahh/stuff/I
 random/ahh/stuff/I/made
-random/ahh/stuff/I/made/wtf.txt
+random/ahh/stuff/I/made/wtf.html
 routes.json
 vexo-background.html
 vexo-preview.png
