@@ -1,0 +1,52 @@
+
+name: Update repository paths
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-paths:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Generate paths.txt
+        run: |
+          python3 - <<'PY'
+          import os
+
+          excluded = {".git", "node_modules"}
+          paths = []
+
+          for root, dirs, files in os.walk("."):
+              dirs[:] = sorted(
+                  d for d in dirs
+                  if d not in excluded
+                  and not (root == "." and d == ".github")
+              )
+
+              for name in dirs + files:
+                  path = os.path.relpath(
+                      os.path.join(root, name), "."
+                  ).replace(os.sep, "/")
+
+                  if path != "paths.txt":
+                      paths.append(path)
+
+          with open("paths.txt", "w", encoding="utf-8") as f:
+              f.write("\n".join(sorted(paths)) + "\n")
+          PY
+
+      - name: Save updated paths
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automatically update repository paths"
+          file_pattern: paths.txt
