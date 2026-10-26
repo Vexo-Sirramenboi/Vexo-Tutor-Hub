@@ -7877,15 +7877,18 @@ const BLOCKED_WORDS = [
 
   try {
     if (sessionStorage.getItem("vexo-opening-shown") === "true") {
+      overlay.classList.add("hidden");
+      overlay.style.display = "none";
       return;
     }
 
-    // Mark it as shown before displaying the opening image.
     sessionStorage.setItem("vexo-opening-shown", "true");
     overlay.classList.remove("hidden");
     overlay.style.display = "block";
   } catch (error) {
-    // If storage is unavailable, leave the website accessible.
+    // Keep the website accessible if storage is unavailable.
+    overlay.classList.add("hidden");
+    overlay.style.display = "none";
   }
 })();
 </script>
