@@ -4,6 +4,12 @@ TOS.md
 firstlayer-icon.png
 firstlayer.png
 index.html
+random
+random/ahh
+random/ahh/stuff
+random/ahh/stuff/I
+random/ahh/stuff/I/made
+random/ahh/stuff/I/made/wtf.txt
 routes.json
 vexo-background.html
 vexo-preview.png
