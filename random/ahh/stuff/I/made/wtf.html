@@ -4,16 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vexo Tutor Hub</title>
+<meta name="theme-color" content="#080f20">
+<title>𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 24px;
     background: #080f20;
     color: #e5edff;
-    font: 16px/1.8 Arial, sans-serif;
+    font-family: "UnifrakturMaguntia", cursive;
+    font-size: 19px;
+    line-height: 1.8;
 }
 
 main {
@@ -21,7 +33,21 @@ main {
     margin: auto;
 }
 
-h1 { color: #6194ff; }
+h1, h2, h3 {
+    font-family: "Dancing Script", cursive;
+    font-weight: 700;
+    color: #6194ff;
+}
+
+h1 {
+    text-align: center;
+    font-size: clamp(42px, 8vw, 64px);
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 32px;
+}
 
 #content {
     white-space: pre-wrap;
@@ -30,24 +56,38 @@ h1 { color: #6194ff; }
     border: 1px solid #263b60;
     border-radius: 12px;
     padding: 24px;
+    font-family: "UnifrakturMaguntia", cursive;
+    font-size: 20px;
+    line-height: 1.8;
 }
 
 a {
+    font-family: "UnifrakturMaguntia", cursive;
     color: #82adff;
     overflow-wrap: anywhere;
 }
 
-a:hover { color: white; }
+a:hover {
+    color: white;
+}
 
 @media (max-width: 600px) {
-    body { padding: 12px; }
-    #content { padding: 15px; }
+    body {
+        padding: 12px;
+    }
+
+    #content {
+        padding: 15px;
+        font-size: 18px;
+    }
 }
 </style>
 </head>
+
 <body>
 <main>
-<h1>Vexo Tutor Hub</h1>
+
+<h1>𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫</h1>
 
 <div id="content">
 how tf did u get here?
@@ -55,7 +95,7 @@ anyways, since your here I want to give you a rundown on what this is :3
 
 The Vision:
 
-The main purpose of his website is to have a hub of un6l0ck3d links and g@am3 sites for 5ch00l and this website is purely ran by the community (ofc admins and I will be handling the verification that the sites are safe and not phishing links or smt else lol). 
+The main purpose of this website is to have a hub of un6l0ck3d links and g@am3 sites for 5ch00l and this website is purely ran by the community (ofc admins and I will be handling the verification that the sites are safe and not phishing links or smt else lol). 
 
 History:
 
@@ -394,22 +434,31 @@ https://rook.ponsfamilylaunch.com
 (by the time you find these they might not work so sorry not sorry :P)
 
 -Vexo (Owner)</div>
+
 </main>
 
 <script>
 const content = document.getElementById("content");
-const urlPattern = /https:\/\/[^\s<>"']+/g;
+const originalText = content.textContent;
 
-content.innerHTML = content.textContent.replace(
-    urlPattern,
+const escaped = originalText.replace(/[&<>]/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;"
+}[char]));
+
+content.innerHTML = escaped.replace(
+    /https:\/\/[^\s<>"&]+/g,
     url => {
         const safeUrl = url.replace(/[.,)]+$/, "");
         const ending = url.slice(safeUrl.length);
+
         return '<a href="' + safeUrl +
             '" target="_blank" rel="noopener noreferrer">' +
             safeUrl + '</a>' + ending;
     }
 );
 </script>
+
 </body>
 </html>
