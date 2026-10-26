@@ -1,9 +1,9 @@
-
 LICENSE
 README.md
 TOS.md
 firstlayer-icon.png
 firstlayer.png
 index.html
+routes.json
 vexo-background.html
 vexo-preview.png
