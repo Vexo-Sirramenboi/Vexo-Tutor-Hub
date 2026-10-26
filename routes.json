@@ -1,0 +1,13 @@
+
+{
+  "routes": [
+    {
+      "path": "/",
+      "file": "index.html"
+    },
+    {
+      "path": "/vexo-background.html",
+      "file": "vexo-background.html"
+    }
+  ]
+}
