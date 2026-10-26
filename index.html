@@ -14,20 +14,34 @@
 <style>
 
 /* First-visit full-screen overlay */
+
+/* FIRST-VISIT FULL-SCREEN, SCROLLABLE OVERLAY */
 #first-layer-overlay {
   position: fixed;
   inset: 0;
   z-index: 2147483647;
+
   width: 100%;
   height: 100%;
+  height: 100dvh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
   background: #000;
+
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
+/* Allow the entire image to be viewed */
 #first-layer-overlay img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: top center;
 }
 
 #first-layer-overlay.hidden {
