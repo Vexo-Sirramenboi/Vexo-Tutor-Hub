@@ -10,6 +10,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
+
+/* First-visit full-screen overlay */
+#first-layer-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483647;
+  background: #050711;
+  display: none;
+  overflow: hidden;
+}
+
+#first-layer-overlay img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#first-layer-overlay.hidden {
+  display: none !important;
+}
+
+  
 :root{
 --bg:#06090f;--bg2:#0a0f1c;--card:#0e1626;--surface:rgba(17,24,43,.72);
 --line:rgba(148,163,184,.11);--line2:rgba(148,163,184,.18);
@@ -370,6 +396,10 @@ body{
 </style>
 </head>
 <body>
+
+<div id="first-layer-overlay" aria-label="VEXO opening screen">
+  <img src="firstlayer.png" alt="VEXO">
+</div>
 
 <!-- VEXO DEDICATED BACKGROUND — separate HTML file -->
 <iframe
@@ -955,6 +985,7 @@ body{
 <div class="toast" id="toast"></div>
 
 <script>
+  
 /* SUPABASE */
 const SUPABASE_URL = "https://jxxjvwemjvhrozuaihso.supabase.co";
 const SUPABASE_KEY = "sb_publishable_hbQfOIYOcFnCDyn0s6GPyg_amHog7u-";
@@ -7838,3 +7869,24 @@ const BLOCKED_WORDS = [
   };
 })();
 </script>
+
+<script>
+(() => {
+  const overlay = document.getElementById("first-layer-overlay");
+  if (!overlay) return;
+
+  try {
+    if (sessionStorage.getItem("vexo-opening-shown") === "true") {
+      return;
+    }
+
+    // Mark it as shown before displaying the opening image.
+    sessionStorage.setItem("vexo-opening-shown", "true");
+    overlay.classList.remove("hidden");
+    overlay.style.display = "block";
+  } catch (error) {
+    // If storage is unavailable, leave the website accessible.
+  }
+})();
+</script>
+</body>
