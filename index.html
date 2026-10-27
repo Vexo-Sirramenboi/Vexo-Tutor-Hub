@@ -958,6 +958,8 @@ body{
 <option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="all">All submissions</option>
 </select>
 <button class="btn" onclick="loadAdminData()">↻ Refresh</button>
+<button class="btn success" id="massApproveBtn" onclick="massApprovePending()">✓ Approve All Pending</button>
+<button class="btn danger" id="massRejectBtn" onclick="massRejectPending()">✕ Reject All Pending</button>
 </div>
 <div id="adminQueue" class="queue"></div>
 </div>
@@ -1738,6 +1740,165 @@ async function renderAdminQueue(){
 }
 
 /* APPROVE / REJECT / DELETE */
+
+/* ============================================================
+   MASS LINK ACCEPTER & REJECTER
+   ============================================================ */
+
+async function massApprovePending() {
+  if (!isAdmin) {
+    toast("Admin access required.");
+    return;
+  }
+
+  const pendingLinks = (allAdminLinks || []).filter(x => x.status === "pending");
+  if (!pendingLinks.length) {
+    toast("No pending submissions to approve.");
+    return;
+  }
+
+  const count = pendingLinks.length;
+  if (!confirm(`Are you sure you want to approve all ${count} pending link${count === 1 ? "" : "s"}?`)) {
+    return;
+  }
+
+  const btn = $("massApproveBtn");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = `Approving (0/${count})...`;
+  }
+
+  try {
+    const pendingIds = pendingLinks.map(x => x.id);
+    
+    // Chunk size of 100 ensures the query URL never exceeds browser/server limits
+    const CHUNK_SIZE = 100;
+    let processed = 0;
+
+    for (let i = 0; i < pendingIds.length; i += CHUNK_SIZE) {
+      const chunk = pendingIds.slice(i, i + CHUNK_SIZE);
+
+      const { error } = await db
+        .from("links")
+        .update({ status: "approved" })
+        .in("id", chunk);
+
+      if (error) throw error;
+
+      processed += chunk.length;
+      if (btn) {
+        btn.textContent = `Approving (${processed}/${count})...`;
+      }
+    }
+
+    // Background notifications in small batches as well
+    const submitters = pendingLinks.filter(x => x.user_id);
+    if (submitters.length) {
+      const notifications = submitters.map(link => ({
+        user_id: link.user_id,
+        type: "approved",
+        title: "Your link was approved",
+        message: `Your submission "${link.title}" was approved.`,
+        link_id: link.id
+      }));
+
+      for (let i = 0; i < notifications.length; i += CHUNK_SIZE) {
+        const notifChunk = notifications.slice(i, i + CHUNK_SIZE);
+        db.from("notifications").insert(notifChunk).catch(err => {
+          console.error("Batch notification error:", err);
+        });
+      }
+    }
+
+    toast(`Successfully approved ${count} link${count === 1 ? "" : "s"}!`);
+    await loadAdminData();
+    await loadLinks();
+  } catch (err) {
+    console.error("Mass approve failed:", err);
+    toast("Failed to approve links: " + (err.message || "Database error"));
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "✓ Approve All Pending";
+    }
+  }
+}
+
+async function massRejectPending() {
+  if (!isAdmin) {
+    toast("Admin access required.");
+    return;
+  }
+
+  const pendingLinks = (allAdminLinks || []).filter(x => x.status === "pending");
+  if (!pendingLinks.length) {
+    toast("No pending submissions to reject.");
+    return;
+  }
+
+  const count = pendingLinks.length;
+  if (!confirm(`Are you sure you want to reject all ${count} pending link${count === 1 ? "" : "s"}?`)) {
+    return;
+  }
+
+  const btn = $("massRejectBtn");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = `Rejecting (0/${count})...`;
+  }
+
+  try {
+    const pendingIds = pendingLinks.map(x => x.id);
+    const CHUNK_SIZE = 100;
+    let processed = 0;
+
+    for (let i = 0; i < pendingIds.length; i += CHUNK_SIZE) {
+      const chunk = pendingIds.slice(i, i + CHUNK_SIZE);
+
+      const { error } = await db
+        .from("links")
+        .update({ status: "rejected" })
+        .in("id", chunk);
+
+      if (error) throw error;
+
+      processed += chunk.length;
+      if (btn) {
+        btn.textContent = `Rejecting (${processed}/${count})...`;
+      }
+    }
+
+    const submitters = pendingLinks.filter(x => x.user_id);
+    if (submitters.length) {
+      const notifications = submitters.map(link => ({
+        user_id: link.user_id,
+        type: "rejected",
+        title: "Your link was rejected",
+        message: `Your submission "${link.title}" was rejected by a moderator.`,
+        link_id: link.id
+      }));
+
+      for (let i = 0; i < notifications.length; i += CHUNK_SIZE) {
+        const notifChunk = notifications.slice(i, i + CHUNK_SIZE);
+        db.from("notifications").insert(notifChunk).catch(err => {
+          console.error("Batch notification error:", err);
+        });
+      }
+    }
+
+    toast(`Rejected ${count} link${count === 1 ? "" : "s"}.`);
+    await loadAdminData();
+  } catch (err) {
+    console.error("Mass reject failed:", err);
+    toast("Failed to reject links: " + (err.message || "Database error"));
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "✕ Reject All Pending";
+    }
+  }
+}
+
 async function approveLink(id){
   if(!isAdmin) return;
   const {data:link} = await db.from("links").select("id,title,user_id").eq("id", id).single();
@@ -7916,7 +8077,7 @@ const BLOCKED_WORDS = [
   const openingTitle =
     "IXL | Math, Language Arts, Science, Social Studies, and Spanish";
 
-  const mainTitle = "VEXO — Community";
+  const mainTitle = "𝓥𝓮𝔁𝓸 𝓣𝓾𝓽𝓸𝓻 𝓗𝓾𝓫";
 
   const openingIcon = "firstlayer-icon.png";
 
