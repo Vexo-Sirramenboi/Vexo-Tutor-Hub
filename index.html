@@ -13,7 +13,55 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 
-/* First-visit full-screen overlay */
+
+/* VEXO mirror links */
+.hero .mirror-links {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.hero .mirror-links-title {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.hero .mirror-links a {
+  display: inline-block;
+  max-width: 100%;
+  color: var(--accent2);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .2s ease, text-shadow .2s ease;
+}
+
+.hero .mirror-links a:hover {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(25, 211, 255, .55);
+}
+
+.hero .mirror-links .mirror-new {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.hero .mirror-links .mirror-down {
+  color: var(--red);
+  font-size: 12px;
+}
+
+.hero .mirror-links .mirror-limited {
+  color: var(--amber);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
 
 /* FIRST-VISIT FULL-SCREEN, SCROLLABLE OVERLAY */
 #first-layer-overlay {
@@ -491,27 +539,43 @@ body{
 <p>Owner - Vexo-Sirramenboi</p>
 <p>Admin - CrichyChalky54</p>
 
+
 <div class="mirror-links">
-  <h3>Mirror Links</h3>
-  <ul>
-    <li><a href="https://vexo-tutor-hub.vercel.app/" target="_blank" rel="noopener noreferrer">Vercel</a></li>
-    <li><a href="https://vexo-tutor-hub.3001890.workers.dev/" target="_blank" rel="noopener noreferrer">Cloudflare Workers</a></li>
-    <li><a href="https://vexo-tutor-hub.onrender.com/" target="_blank" rel="noopener noreferrer">Render</a></li>
-    <li><a href="https://vexo-turtor-hub.netlify.app/" target="_blank" rel="noopener noreferrer">Netlify</a> — <span class="status-down">Currently down</span></li>
-    <li><a href="https://vexo-tutor-hub.vexo-sirramenboi.deno.net/" target="_blank" rel="noopener noreferrer">Deno</a></li>
-    <li><a href="https://vexo-tutor-hub.wasmer.app/" target="_blank" rel="noopener noreferrer">Wasmer</a></li>
-    <li><a href="https://soarerquick-azrngb.stormkit.dev/" target="_blank" rel="noopener noreferrer">Stormkit</a></li>
-    <li><a href="https://vexo-tutor-hub.neocities.org/" target="_blank" rel="noopener noreferrer">Neocities</a> — <span class="status-down">Currently down</span></li>
-    <li><a href="https://vexo-tutor-hub.freehosting.dev" target="_blank" rel="noopener noreferrer">FreeHosting</a></li>
-    <li><a href="https://vexo-tutor-hub.surge.sh/" target="_blank" rel="noopener noreferrer">Surge</a></li>
-    <li><a href="https://vexo-tutor-hub.appwrite.network/" target="_blank" rel="noopener noreferrer">Appwrite</a> <span class="status-new">NEW</span></li>
-    <li><a href="https://vexo-tutor-hub-a8c248.gitlab.io/" target="_blank" rel="noopener noreferrer">GitLab Pages</a> <span class="status-new">NEW</span></li>
-    <li><a href="https://vexo-tutor-hub-ab3bc.containers.snapdeploy.app/" target="_blank" rel="noopener noreferrer">SnapDeploy</a> <span class="status-new">NEW</span></li>
-    <li><a href="https://vexo-tutor-hub.droply.id/" target="_blank" rel="noopener noreferrer">Droply</a> <span class="status-new">NEW</span></li>
-    <li><a href="https://vexo-tutor-hub.antideploy.app/" target="_blank" rel="noopener noreferrer">AntiDeploy</a> <span class="status-new">NEW</span></li>
-    <li><a href="https://emerald-wolf-1kpy6.ship.place/" target="_blank" rel="noopener noreferrer">Ship.place</a> <span class="status-new">NEW</span> <span class="status-down">LIMITED</span></li>
-  </ul>
+  <span class="mirror-links-title">Mirror Links</span>
+
+  <a href="https://vexo-tutor-hub.vercel.app/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.vercel.app/</a><br><br>
+
+  <a href="https://vexo-tutor-hub.3001890.workers.dev/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.3001890.workers.dev/</a><br><br>
+
+  <a href="https://vexo-tutor-hub.onrender.com/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.onrender.com/</a><br><br>
+
+  <a href="https://vexo-turtor-hub.netlify.app/" target="_blank" rel="noopener noreferrer">https://vexo-turtor-hub.netlify.app/</a> <span class="mirror-down">(currently down)</span><br><br>
+
+  <a href="https://vexo-tutor-hub.vexo-sirramenboi.deno.net/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.vexo-sirramenboi.deno.net/</a><br><br>
+
+  <a href="https://vexo-tutor-hub.wasmer.app/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.wasmer.app/</a><br><br>
+
+  <a href="https://soarerquick-azrngb.stormkit.dev/" target="_blank" rel="noopener noreferrer">https://soarerquick-azrngb.stormkit.dev/</a><br><br>
+
+  <a href="https://vexo-tutor-hub.neocities.org/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.neocities.org/</a> <span class="mirror-down">(currently down)</span><br><br>
+
+  <a href="https://vexo-tutor-hub.freehosting.dev" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.freehosting.dev</a><br><br>
+
+  <a href="https://vexo-tutor-hub.surge.sh/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.surge.sh/</a><br><br>
+
+  <a href="https://vexo-tutor-hub.appwrite.network/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.appwrite.network/</a> <span class="mirror-new">NEW</span><br><br>
+
+  <a href="https://vexo-tutor-hub-a8c248.gitlab.io/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub-a8c248.gitlab.io/</a> <span class="mirror-new">NEW</span><br><br>
+
+  <a href="https://vexo-tutor-hub-ab3bc.containers.snapdeploy.app/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub-ab3bc.containers.snapdeploy.app/</a> <span class="mirror-new">NEW</span><br><br>
+
+  <a href="https://vexo-tutor-hub.droply.id/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.droply.id/</a> <span class="mirror-new">NEW</span><br><br>
+
+  <a href="https://vexo-tutor-hub.antideploy.app/" target="_blank" rel="noopener noreferrer">https://vexo-tutor-hub.antideploy.app/</a> <span class="mirror-new">NEW</span><br><br>
+
+  <a href="https://emerald-wolf-1kpy6.ship.place/" target="_blank" rel="noopener noreferrer">https://emerald-wolf-1kpy6.ship.place/</a> <span class="mirror-new">NEW</span> <span class="mirror-limited">LIMITED</span>
 </div>
+
 
 <div class="actions">
 <button class="btn primary" onclick="showPage('vault')">⌘ Explore Vault</button>
