@@ -1,6 +1,9 @@
 # WEBSITE IS FULLY OPERATIONAL 
 
 ## Mirror links
+
+https://vexo-sirramenboi.github.io/Vexo-Tutor-Hub/ (currently down) (Main)
+
 https://vexo-tutor-hub.vercel.app/
 
 https://vexo-tutor-hub.3001890.workers.dev/
