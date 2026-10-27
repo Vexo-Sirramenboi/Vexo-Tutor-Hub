@@ -23,6 +23,8 @@ https://vexo-tutor-hub.surge.sh/
 
 https://vexo-tutor-hub.appwrite.network/ (NEW)
 
+https://vexo-tutor-hub-a8c248.gitlab.io/ (NEW)
+
 
 # VEXO — Community Link Directory & Discovery Platform
 
