@@ -21,6 +21,7 @@ https://vexo-tutor-hub.freehosting.dev
 
 https://vexo-tutor-hub.surge.sh/
 
+https://vexo-tutor-hub.appwrite.network/ (NEW)
 
 
 # VEXO — Community Link Directory & Discovery Platform
