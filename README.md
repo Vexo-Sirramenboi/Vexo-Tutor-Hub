@@ -29,6 +29,8 @@ https://vexo-tutor-hub-ab3bc.containers.snapdeploy.app/ (NEW)
 
 https://vexo-tutor-hub.droply.id/ (NEW)
 
+https://vexo-tutor-hub.antideploy.app/ (NEW)
+
 
 # VEXO — Community Link Directory & Discovery Platform
 
