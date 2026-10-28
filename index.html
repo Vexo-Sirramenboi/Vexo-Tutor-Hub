@@ -809,7 +809,7 @@ body{
 <div class="tool-card">
 <div class="tool-head"><h4>Case Converter</h4><span class="chip">text</span></div>
 <div class="col-row">
-<select class="select" id="caseSel" style="width:135px">
+<select class="select" id="caseSel" sclass="btn mini primarytyle="width:135px">
 <option value="upper">UPPER CASE</option>
 <option value="lower">lower case</option>
 <option value="title">Title Case</option>
@@ -827,6 +827,193 @@ body{
 
 </div>
 </div>
+
+  
+<!-- TOOL BOX 2.0: 12 NEW TOOLS -->
+<!-- Paste inside your existing toolbox grid/container. -->
+
+<div class="tool-card">
+  <div class="tool-head"><h4>QR Code Generator</h4><span class="chip">utility</span></div>
+  <textarea class="input ta-sm" id="tb2QrIn" placeholder="Enter text, URL, or contact info..."></textarea>
+  <div class="col-row">
+    <select class="select" id="tb2QrSize">
+      <option value="160">Small</option>
+      <option value="256" selected>Medium</option>
+      <option value="400">Large</option>
+    </select>
+    <button class="btn mini primary" onclick="tb2MakeQr()">Generate</button>
+    <button class="btn mini" onclick="tb2DownloadQr()">Download</button>
+  </div>
+  <div id="tb2QrPreview" style="text-align:center;padding:10px;overflow-wrap:anywhere">QR preview appears here.</div>
+  <div class="muted-sm">QR generation uses an external QR service. Don't submit private information.</div>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Regex Tester</h4><span class="chip">dev</span></div>
+  <input class="input" id="tb2RegexPattern" placeholder="Pattern, e.g. \bcat\b">
+  <div class="col-row">
+    <input class="input" id="tb2RegexFlags" value="g" placeholder="Flags: g, i, m">
+    <button class="btn mini primary" onclick="tb2TestRegex()">Test</button>
+  </div>
+  <textarea class="input ta-sm" id="tb2RegexText" placeholder="Text to test..."></textarea>
+  <div id="tb2RegexResult" class="muted-sm">Matches will appear here.</div>
+  <textarea class="input ta-sm tool-out" id="tb2RegexMatches" readonly placeholder="Matched text..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Text Diff Checker</h4><span class="chip">text</span></div>
+  <textarea class="input ta-sm" id="tb2DiffA" placeholder="Original text..."></textarea>
+  <textarea class="input ta-sm" id="tb2DiffB" placeholder="Changed text..."></textarea>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2CompareText()">Compare</button>
+    <button class="btn mini" onclick="tb2ClearDiff()">Clear</button>
+  </div>
+  <pre id="tb2DiffOut" class="input ta-sm" style="white-space:pre-wrap;overflow-wrap:anywhere">Comparison appears here.</pre>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Lorem Ipsum Generator</h4><span class="chip">text</span></div>
+  <div class="col-row">
+    <input class="input" type="number" id="tb2LoremCount" value="3" min="1" max="30" placeholder="Paragraphs">
+    <select class="select" id="tb2LoremUnit">
+      <option value="paragraphs">Paragraphs</option>
+      <option value="sentences">Sentences</option>
+      <option value="words">Words</option>
+    </select>
+  </div>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2GenerateLorem()">Generate</button>
+    <button class="btn mini" onclick="copyToClipboard($('tb2LoremOut').value,'Lorem Ipsum')">Copy</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2LoremOut" readonly placeholder="Generated text..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Bulk UUID Generator</h4><span class="chip">dev</span></div>
+  <div class="col-row">
+    <input class="input" type="number" id="tb2UuidCount" min="1" max="500" value="10" placeholder="Count">
+    <button class="btn mini primary" onclick="tb2GenerateUuids()">Generate</button>
+  </div>
+  <div class="actions">
+    <button class="btn mini" onclick="copyToClipboard($('tb2UuidOut').value,'UUIDs')">Copy all</button>
+    <button class="btn mini" onclick="tb2DownloadText('tb2UuidOut','uuids.txt')">Download</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2UuidOut" readonly placeholder="Generated UUIDs..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Cron Expression Builder</h4><span class="chip">dev</span></div>
+  <label class="check">Minute (0–59)
+    <input class="input" id="tb2CronMin" value="0" placeholder="* or 0-59">
+  </label>
+  <label class="check">Hour (0–23)
+    <input class="input" id="tb2CronHour" value="9" placeholder="* or 0-23">
+  </label>
+  <label class="check">Day of month (1–31)
+    <input class="input" id="tb2CronDay" value="*" placeholder="* or 1-31">
+  </label>
+  <label class="check">Month (1–12)
+    <input class="input" id="tb2CronMonth" value="*" placeholder="* or 1-12">
+  </label>
+  <label class="check">Day of week (0–7)
+    <input class="input" id="tb2CronWeek" value="1-5" placeholder="* or 0-7">
+  </label>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2BuildCron()">Build</button>
+    <button class="btn mini" onclick="copyToClipboard($('tb2CronOut').value,'Cron')">Copy</button>
+  </div>
+  <input class="input tool-out" id="tb2CronOut" readonly placeholder="Cron expression...">
+  <div id="tb2CronStatus" class="muted-sm">Fields support standard cron syntax.</div>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Image Resizer</h4><span class="chip">files</span></div>
+  <input class="input" type="file" id="tb2ImageFile" accept="image/*" onchange="tb2LoadImage()">
+  <div id="tb2ImageInfo" class="muted-sm">Choose an image to begin.</div>
+  <div class="col-row">
+    <input class="input" type="number" id="tb2ImageWidth" min="1" max="12000" placeholder="Width px">
+    <input class="input" type="number" id="tb2ImageHeight" min="1" max="12000" placeholder="Height px">
+  </div>
+  <label class="check"><input type="checkbox" id="tb2ImageRatio" checked> Keep aspect ratio</label>
+  <div class="col-row">
+    <select class="select" id="tb2ImageFormat">
+      <option value="image/png">PNG</option>
+      <option value="image/jpeg">JPEG</option>
+      <option value="image/webp">WebP</option>
+    </select>
+    <button class="btn mini primary" onclick="tb2ResizeImage()">Resize</button>
+  </div>
+  <div id="tb2ImagePreview" style="text-align:center;overflow-wrap:anywhere"></div>
+  <a id="tb2ImageDownload" class="btn mini" style="display:none" download="resized-image.png">Download image</a>
+  <div id="tb2ImageStatus" class="muted-sm"></div>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>File Inspector</h4><span class="chip">files</span></div>
+  <input class="input" type="file" id="tb2FileInput" onchange="tb2InspectFile()">
+  <div class="actions">
+    <button class="btn mini" onclick="document.getElementById('tb2FileInput').value='';$('tb2FileInfo').value='';">Clear</button>
+    <button class="btn mini" onclick="copyToClipboard($('tb2FileInfo').value,'File info')">Copy info</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2FileInfo" readonly placeholder="File information appears here..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>HTML Entity Codec</h4><span class="chip">dev</span></div>
+  <textarea class="input ta-sm" id="tb2EntityIn" placeholder="Text or HTML entities..."></textarea>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2EncodeEntities()">Encode</button>
+    <button class="btn mini" onclick="tb2DecodeEntities()">Decode</button>
+    <button class="btn mini" onclick="copyToClipboard($('tb2EntityOut').value,'Output')">Copy</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2EntityOut" readonly placeholder="Output..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Number Base Converter</h4><span class="chip">dev</span></div>
+  <input class="input" id="tb2BaseIn" placeholder="Enter an integer, e.g. 255">
+  <div class="col-row">
+    <select class="select" id="tb2BaseFrom">
+      <option value="10">Decimal</option>
+      <option value="2">Binary</option>
+      <option value="8">Octal</option>
+      <option value="16">Hexadecimal</option>
+    </select>
+    <button class="btn mini primary" onclick="tb2ConvertBase()">Convert</button>
+  </div>
+  <div class="actions">
+    <button class="btn mini" onclick="copyToClipboard($('tb2BaseOut').value,'Conversions')">Copy all</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2BaseOut" readonly placeholder="Binary, octal, decimal, and hex..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Date Difference Calculator</h4><span class="chip">date</span></div>
+  <label class="check">Start date and time
+    <input class="input" type="datetime-local" id="tb2DateStart">
+  </label>
+  <label class="check">End date and time
+    <input class="input" type="datetime-local" id="tb2DateEnd">
+  </label>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2DateDifference()">Calculate</button>
+    <button class="btn mini" onclick="tb2SetDateNow()">Set end to now</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2DateOut" readonly placeholder="Time difference..."></textarea>
+</div>
+
+<div class="tool-card">
+  <div class="tool-head"><h4>Query String Parser</h4><span class="chip">web</span></div>
+  <textarea class="input ta-sm" id="tb2QueryIn" placeholder="https://example.com/?name=Alex&color=blue"></textarea>
+  <div class="actions">
+    <button class="btn mini primary" onclick="tb2ParseQuery()">Parse</button>
+    <button class="btn mini" onclick="tb2BuildQuery()">Build URL</button>
+    <button class="btn mini" onclick="copyToClipboard($('tb2QueryOut').value,'Query output')">Copy</button>
+  </div>
+  <textarea class="input ta-sm tool-out" id="tb2QueryOut" readonly placeholder="Key-value pairs or rebuilt URL..."></textarea>
+  <div class="muted-sm">Build format: one key=value pair per line.</div>
+</div>
+<!-- END TOOL BOX 2.0 NEW TOOLS -->
 </section>
 
 <!-- VEXO AI -->
@@ -8183,6 +8370,560 @@ const BLOCKED_WORDS = [
     setTab(openingTitle, openingIcon);
   }
 })();
+
+
+/* =========================================================
+   TOOL BOX 2.0 — 12 ADDITIONAL TOOLS
+   Unique tb2_ function names and DOM IDs.
+   ========================================================= */
+
+function tb2Esc(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#39;"
+  })[ch]);
+}
+
+function tb2DownloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function tb2DownloadText(id, filename) {
+  const el = document.getElementById(id);
+  if (!el || !el.value) return alert("Nothing to download yet.");
+  tb2DownloadBlob(
+    new Blob([el.value], { type: "text/plain;charset=utf-8" }),
+    filename
+  );
+}
+
+function tb2SetText(id, value) {
+  document.getElementById(id).value = value;
+}
+
+/* 1. QR CODE GENERATOR
+   Uses the public QR Server API. Requires internet access. */
+
+let tb2QrUrl = "";
+
+function tb2MakeQr() {
+  const value = document.getElementById("tb2QrIn").value;
+  const size = Number(document.getElementById("tb2QrSize").value);
+  const preview = document.getElementById("tb2QrPreview");
+
+  if (!value.trim()) return alert("Enter text or a URL first.");
+
+  tb2QrUrl =
+    "https://api.qrserver.com/v1/create-qr-code/?" +
+    new URLSearchParams({
+      size: `${size}x${size}`,
+      data: value,
+      format: "png"
+    }).toString();
+
+  preview.innerHTML =
+    '<img src="' + tb2Esc(tb2QrUrl) +
+    '" alt="Generated QR code" width="' + size +
+    '" height="' + size +
+    '" style="max-width:100%;height:auto" onerror="this.alt=\'QR generation failed\';this.parentElement.insertAdjacentText(\'beforeend\',\' QR service unavailable.\')">';
+}
+
+async function tb2DownloadQr() {
+  if (!tb2QrUrl) return alert("Generate a QR code first.");
+
+  try {
+    const response = await fetch(tb2QrUrl);
+    if (!response.ok) throw new Error("Download failed");
+    tb2DownloadBlob(await response.blob(), "toolbox-qr.png");
+  } catch (e) {
+    window.open(tb2QrUrl, "_blank", "noopener");
+    alert("The QR image was opened in a new tab. Save it from there if direct download is blocked.");
+  }
+}
+
+/* 2. REGEX TESTER */
+
+function tb2TestRegex() {
+  const pattern = document.getElementById("tb2RegexPattern").value;
+  const flags = document.getElementById("tb2RegexFlags").value.trim();
+  const input = document.getElementById("tb2RegexText").value;
+  const status = document.getElementById("tb2RegexResult");
+  const output = document.getElementById("tb2RegexMatches");
+
+  try {
+    if (/[^dgimsuvy]/.test(flags) || new Set(flags).size !== flags.length) {
+      throw new Error("Invalid or duplicate regex flags.");
+    }
+
+    const re = new RegExp(pattern, flags);
+    const matches = [];
+
+    if (re.global || re.sticky) {
+      let match;
+      let safety = 0;
+      while ((match = re.exec(input)) !== null) {
+        matches.push(
+          `Match ${matches.length + 1}: ${JSON.stringify(match[0])} (index ${match.index})`
+        );
+        if (match[0] === "") re.lastIndex++;
+        if (++safety > 10000) throw new Error("Too many matches.");
+      }
+    } else {
+      const match = re.exec(input);
+      if (match) {
+        matches.push(
+          `Match: ${JSON.stringify(match[0])} (index ${match.index})`
+        );
+      }
+    }
+
+    status.textContent = `${matches.length} match(es) found.`;
+    output.value = matches.join("\n") || "No matches.";
+  } catch (err) {
+    status.textContent = "Regex error: " + err.message;
+    output.value = "";
+  }
+}
+
+/* 3. TEXT DIFF CHECKER
+   Line-based comparison. Repeated lines are matched by occurrence. */
+
+function tb2CompareText() {
+  const a = document.getElementById("tb2DiffA").value.split(/\r?\n/);
+  const b = document.getElementById("tb2DiffB").value.split(/\r?\n/);
+  const out = document.getElementById("tb2DiffOut");
+
+  const remaining = new Map();
+  for (const line of a) {
+    remaining.set(line, (remaining.get(line) || 0) + 1);
+  }
+
+  const added = [];
+  for (const line of b) {
+    const count = remaining.get(line) || 0;
+    if (count > 0) remaining.set(line, count - 1);
+    else added.push(line);
+  }
+
+  const removed = [];
+  for (const line of a) {
+    const count = remaining.get(line) || 0;
+    if (count > 0) remaining.set(line, count - 1);
+    else removed.push(line);
+  }
+
+  const result = [
+    `Removed: ${removed.length} line(s)`,
+    ...removed.map(line => "- " + line),
+    "",
+    `Added: ${added.length} line(s)`,
+    ...added.map(line => "+ " + line)
+  ].join("\n");
+
+  out.textContent = result;
+}
+
+function tb2ClearDiff() {
+  ["tb2DiffA", "tb2DiffB"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+  document.getElementById("tb2DiffOut").textContent =
+    "Comparison appears here.";
+}
+
+/* 4. LOREM IPSUM GENERATOR */
+
+function tb2GenerateLorem() {
+  const count = Math.max(1, Math.min(30,
+    Number(document.getElementById("tb2LoremCount").value) || 1
+  ));
+  const unit = document.getElementById("tb2LoremUnit").value;
+  const words = (
+    "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+  ).split(" ");
+
+  const sentence = n => {
+    const arr = [];
+    for (let i = 0; i < n; i++) {
+      if (i > 0 && i % 14 === 0) arr.push(".");
+      arr.push(words[Math.floor(Math.random() * words.length)]);
+    }
+    let s = arr.join(" ").replace(/\s+\./g, ".");
+    return s.charAt(0).toUpperCase() + s.slice(1) + ".";
+  };
+
+  let result;
+  if (unit === "words") {
+    result = Array.from({ length: count }, () =>
+      words[Math.floor(Math.random() * words.length)]
+    ).join(" ");
+  } else if (unit === "sentences") {
+    result = Array.from({ length: count }, () =>
+      sentence(8 + Math.floor(Math.random() * 10))
+    ).join(" ");
+  } else {
+    result = Array.from({ length: count }, () => {
+      const n = 35 + Math.floor(Math.random() * 40);
+      return sentence(n);
+    }).join("\n\n");
+  }
+
+  tb2SetText("tb2LoremOut", result);
+}
+
+/* 5. BULK UUID GENERATOR */
+
+function tb2GenerateUuids() {
+  const count = Math.max(1, Math.min(500,
+    Number(document.getElementById("tb2UuidCount").value) || 1
+  ));
+
+  if (!crypto.randomUUID) {
+    return alert("UUID generation isn't supported by this browser. Try a modern browser on HTTPS.");
+  }
+
+  const uuids = Array.from({ length: count }, () => crypto.randomUUID());
+  tb2SetText("tb2UuidOut", uuids.join("\n"));
+}
+
+/* 6. CRON EXPRESSION BUILDER */
+
+function tb2BuildCron() {
+  const fields = [
+    ["tb2CronMin", 0, 59],
+    ["tb2CronHour", 0, 23],
+    ["tb2CronDay", 1, 31],
+    ["tb2CronMonth", 1, 12],
+    ["tb2CronWeek", 0, 7]
+  ];
+
+  const values = fields.map(([id]) =>
+    document.getElementById(id).value.trim()
+  );
+
+  const validField = (value, min, max) => {
+    if (!value) return false;
+    return value.split(",").every(part => {
+      const p = part.trim();
+      if (!p) return false;
+
+      const pieces = p.split("/");
+      if (pieces.length > 2) return false;
+      const base = pieces[0];
+      const step = pieces.length === 2 ? pieces[1] : null;
+
+      if (step !== null &&
+          (!/^\d+$/.test(step) || Number(step) < 1)) return false;
+
+      if (base === "*") return true;
+
+      const range = base.split("-");
+      if (range.length > 2) return false;
+
+      const validNumber = n =>
+        /^\d+$/.test(n) && Number(n) >= min && Number(n) <= max;
+
+      if (range.length === 1) return validNumber(range[0]);
+      return validNumber(range[0]) &&
+             validNumber(range[1]) &&
+             Number(range[0]) <= Number(range[1]);
+    });
+  };
+
+  for (let i = 0; i < fields.length; i++) {
+    if (!validField(values[i], fields[i][1], fields[i][2])) {
+      document.getElementById("tb2CronStatus").textContent =
+        "Invalid field: " + fields[i][0].replace("tb2Cron", "");
+      return;
+    }
+  }
+
+  tb2SetText("tb2CronOut", values.join(" "));
+  document.getElementById("tb2CronStatus").textContent =
+    "Standard five-field cron expression. Day-of-month/day-of-week behavior depends on your scheduler.";
+}
+
+/* 7. IMAGE RESIZER */
+
+let tb2Image = null;
+let tb2ImageUrl = "";
+
+function tb2LoadImage() {
+  const file = document.getElementById("tb2ImageFile").files[0];
+  const info = document.getElementById("tb2ImageInfo");
+  const preview = document.getElementById("tb2ImagePreview");
+  const status = document.getElementById("tb2ImageStatus");
+
+  tb2Image = null;
+  if (tb2ImageUrl) URL.revokeObjectURL(tb2ImageUrl);
+  tb2ImageUrl = "";
+
+  document.getElementById("tb2ImageDownload").style.display = "none";
+  preview.replaceChildren();
+  status.textContent = "";
+
+  if (!file) {
+    info.textContent = "Choose an image to begin.";
+    return;
+  }
+  if (!file.type.startsWith("image/")) {
+    info.textContent = "Please select an image file.";
+    return;
+  }
+  if (file.size > 30 * 1024 * 1024) {
+    info.textContent = "Image is larger than the 30 MB limit.";
+    return;
+  }
+
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+
+  img.onload = () => {
+    tb2Image = img;
+    document.getElementById("tb2ImageWidth").value = img.naturalWidth;
+    document.getElementById("tb2ImageHeight").value = img.naturalHeight;
+    info.textContent =
+      `${file.name} · ${img.naturalWidth} × ${img.naturalHeight} · ${(file.size / 1024).toFixed(1)} KB`;
+    img.style.maxWidth = "100%";
+    img.style.maxHeight = "180px";
+    preview.replaceChildren(img);
+  };
+
+  img.onerror = () => {
+    URL.revokeObjectURL(url);
+    info.textContent = "Unable to read this image.";
+  };
+  img.src = url;
+}
+
+function tb2ResizeImage() {
+  if (!tb2Image) return alert("Choose a valid image first.");
+
+  const wInput = document.getElementById("tb2ImageWidth");
+  const hInput = document.getElementById("tb2ImageHeight");
+  let w = Number(wInput.value);
+  let h = Number(hInput.value);
+
+  if (!Number.isInteger(w) || !Number.isInteger(h) ||
+      w < 1 || h < 1 || w > 12000 || h > 12000) {
+    return alert("Width and height must be between 1 and 12000 pixels.");
+  }
+
+  if (document.getElementById("tb2ImageRatio").checked) {
+    const ratio = tb2Image.naturalWidth / tb2Image.naturalHeight;
+    if (document.activeElement === wInput) h = Math.max(1, Math.round(w / ratio));
+    else w = Math.max(1, Math.round(h * ratio));
+    if (w > 12000 || h > 12000) {
+      return alert("The proportional dimensions exceed 12000 pixels.");
+    }
+    wInput.value = w;
+    hInput.value = h;
+  }
+
+  const format = document.getElementById("tb2ImageFormat").value;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+
+  if (format === "image/jpeg") {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, w, h);
+  }
+  ctx.drawImage(tb2Image, 0, 0, w, h);
+
+  canvas.toBlob(blob => {
+    if (!blob) {
+      document.getElementById("tb2ImageStatus").textContent =
+        "Image export failed.";
+      return;
+    }
+
+    if (tb2ImageUrl) URL.revokeObjectURL(tb2ImageUrl);
+    tb2ImageUrl = URL.createObjectURL(blob);
+
+    const link = document.getElementById("tb2ImageDownload");
+    const ext = format === "image/jpeg" ? "jpg" :
+      format === "image/webp" ? "webp" : "png";
+
+    link.href = tb2ImageUrl;
+    link.download = `resized-image.${ext}`;
+    link.style.display = "inline-block";
+
+    document.getElementById("tb2ImageStatus").textContent =
+      `Ready: ${w} × ${h} · ${(blob.size / 1024).toFixed(1)} KB`;
+  }, format, 0.92);
+}
+
+/* 8. FILE INSPECTOR */
+
+function tb2InspectFile() {
+  const file = document.getElementById("tb2FileInput").files[0];
+  const out = document.getElementById("tb2FileInfo");
+
+  if (!file) {
+    out.value = "";
+    return;
+  }
+
+  const modified = file.lastModified
+    ? new Date(file.lastModified).toLocaleString()
+    : "Unknown";
+
+  out.value = [
+    `Name: ${file.name}`,
+    `Type: ${file.type || "Unknown"}`,
+    `Size: ${file.size.toLocaleString()} bytes`,
+    `Size (KB): ${(file.size / 1024).toFixed(2)}`,
+    `Size (MB): ${(file.size / (1024 * 1024)).toFixed(3)}`,
+    `Last modified: ${modified}`
+  ].join("\n");
+}
+
+/* 9. HTML ENTITY CODEC */
+
+function tb2EncodeEntities() {
+  const value = document.getElementById("tb2EntityIn").value;
+  const encoded = value.replace(/[&<>"']/g, ch => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#39;"
+  })[ch]);
+  tb2SetText("tb2EntityOut", encoded);
+}
+
+function tb2DecodeEntities() {
+  const value = document.getElementById("tb2EntityIn").value;
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(value, "text/html");
+  tb2SetText("tb2EntityOut", doc.documentElement.textContent || "");
+}
+
+/* 10. NUMBER BASE CONVERTER
+   Supports safe integers only. */
+
+function tb2ConvertBase() {
+  const raw = document.getElementById("tb2BaseIn").value.trim();
+  const base = Number(document.getElementById("tb2BaseFrom").value);
+  const out = document.getElementById("tb2BaseOut");
+
+  if (!raw) {
+    out.value = "Enter an integer first.";
+    return;
+  }
+
+  const parsed = parseInt(raw, base);
+  if (!Number.isSafeInteger(parsed) ||
+      !/^[+-]?[0-9a-fA-F]+$/.test(raw) ||
+      (base === 2 && !/^[+-]?[01]+$/.test(raw)) ||
+      (base === 8 && !/^[+-]?[0-7]+$/.test(raw)) ||
+      (base === 10 && !/^[+-]?\d+$/.test(raw))) {
+    out.value = "Invalid input or integer outside the safe range.";
+    return;
+  }
+
+  out.value = [
+    `Binary:      ${parsed.toString(2)}`,
+    `Octal:       ${parsed.toString(8)}`,
+    `Decimal:     ${parsed.toString(10)}`,
+    `Hexadecimal: ${parsed.toString(16).toUpperCase()}`
+  ].join("\n");
+}
+
+/* 11. DATE DIFFERENCE CALCULATOR */
+
+function tb2DateDifference() {
+  const start = new Date(document.getElementById("tb2DateStart").value);
+  const end = new Date(document.getElementById("tb2DateEnd").value);
+  const out = document.getElementById("tb2DateOut");
+
+  if (!document.getElementById("tb2DateStart").value ||
+      !document.getElementById("tb2DateEnd").value ||
+      !Number.isFinite(start.getTime()) ||
+      !Number.isFinite(end.getTime())) {
+    out.value = "Enter both valid dates.";
+    return;
+  }
+
+  const delta = end.getTime() - start.getTime();
+  const abs = Math.abs(delta);
+  const totalSeconds = Math.floor(abs / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  out.value = [
+    `Direction: ${delta < 0 ? "End is before start" : delta > 0 ? "End is after start" : "Same moment"}`,
+    `Difference: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`,
+    `Total hours: ${(abs / 3600000).toFixed(2)}`,
+    `Total minutes: ${(abs / 60000).toFixed(2)}`,
+    `Total seconds: ${Math.floor(abs / 1000).toLocaleString()}`
+  ].join("\n");
+}
+
+function tb2SetDateNow() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+    .toISOString().slice(0, 16);
+  document.getElementById("tb2DateEnd").value = local;
+}
+
+/* 12. QUERY STRING PARSER */
+
+function tb2ParseQuery() {
+  const raw = document.getElementById("tb2QueryIn").value.trim();
+  const out = document.getElementById("tb2QueryOut");
+
+  if (!raw) {
+    out.value = "Enter a URL or query string.";
+    return;
+  }
+
+  try {
+    let params;
+    if (raw.includes("://")) {
+      params = new URL(raw).searchParams;
+    } else {
+      const query = raw.startsWith("?") ? raw.slice(1) : raw;
+      params = new URLSearchParams(query);
+    }
+
+    const rows = [];
+    params.forEach((value, key) => {
+      rows.push(`${key}=${value}`);
+    });
+
+    out.value = rows.length ? rows.join("\n") : "No query parameters found.";
+  } catch (err) {
+    out.value = "Invalid URL or query string: " + err.message;
+  }
+}
+
+function tb2BuildQuery() {
+  const raw = document.getElementById("tb2QueryIn").value.trim();
+  const out = document.getElementById("tb2QueryOut");
+  const params = new URLSearchParams();
+
+  for (const line of raw.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    const i = line.indexOf("=");
+    if (i < 0) {
+      out.value = `Invalid line (expected key=value): ${line}`;
+      return;
+    }
+    params.append(line.slice(0, i).trim(), line.slice(i + 1).trim());
+  }
+
+  out.value = "?" + params.toString();
+}
+  
 </script>
 </body>
 
