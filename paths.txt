@@ -13,7 +13,7 @@ random/ahh/stuff/I/made/icon.ico
 random/ahh/stuff/I/made/there
 random/ahh/stuff/I/made/there/is
 random/ahh/stuff/I/made/there/is/nothing
-random/ahh/stuff/I/made/there/is/nothing/here
+random/ahh/stuff/I/made/there/is/nothing/here.txt
 random/ahh/stuff/I/made/wtf.html
 routes.json
 vexo-background.html
