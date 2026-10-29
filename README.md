@@ -36,7 +36,7 @@ https://vexo-tutor-hub.antideploy.app/ (NEW)
 
 https://emerald-wolf-1kpy6.ship.place/ (NEW) (LIMITED)
 
-http://s3-vexo-tutor-hub-9746c82f9560.s3-website-us-east-1.amazonaws.com/ (NEW)
+https://s3-vexo-tutor-hub-9746c82f9560.s3.us-east-1.amazonaws.com/index.html (NEW)
 
 https://s3-vexo-tutor-hub.s3.us-east-2.amazonaws.com/index.html (NEW)
 
